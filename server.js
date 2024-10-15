@@ -12,4 +12,4 @@ server.use(express.json())
 server.use(app);
 
 // server listen port
-server.listen(port, ()=> console.log(`Listing on port ${port}`));
+app.listen(port, ()=> console.log(`Server is running on http://localhost:${port}`));
