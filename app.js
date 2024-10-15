@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) =>{
-    res.send("hello..")
-});
+/******** ROUTES *******/
+
+//------------> Contacts
+const odooContacts = require('./api/contacts/contacs')
+app.use('/contacts', odooContacts);
 
 module.exports = app;
