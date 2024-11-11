@@ -8,10 +8,10 @@ const swaggerJsDoc = require('swagger-jsdoc');
 // // Swagger setup
 const swaggerOptions = {
     swaggerDefinition: {
-      myapi: '3.0.0',
+      myapi: '1.0.0',
       info: {
         title: 'Odoo API with node.js',
-        version: '1.0.0',
+        version: '17.0',
         description: 'API documentation',
       },
       servers: [
@@ -20,18 +20,24 @@ const swaggerOptions = {
         },
       ],
     },
-    apis: ['./api/*/*.js'], // files containing annotations as above
+    apis: ['./docs/*.js'], // files containing annotations as above
   };
 
+  
+  
+  
+  /******** ROUTES *******/
+  
+  //------------> Contacts
+  const Contacts = require('./contacts.router')
   const swaggerDocs = swaggerJsDoc(swaggerOptions);
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+  
+  
+  function routerApi(app){
+    
+    app.use('/api/contacts', Contacts);
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
+}
 
-
-/******** ROUTES *******/
-
-//------------> Contacts
-const odooContacts = require('./api/contacts/contacts')
-app.use('/api/contacts', odooContacts);
-
-module.exports = app;
+module.exports = routerApi;

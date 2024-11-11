@@ -1,15 +1,17 @@
-const express = require('express')
-const server = express()
-const port = 5000
-const cors = require('cors')
-const app = require('./app')
+const express = require('express');
+const routerApi = require('./routes');
+
+const server = express();
+const port = 5000;
+
+const cors = require('cors');
 
 // middleware
-server.use(cors())
-server.use(express.json())
+server.use(cors());
+server.use(express.json());
 
 // app
-server.use(app);
+routerApi(server)
 
 // server listen port
-app.listen(port, ()=> console.log(`Server is running on http://localhost:${port}`));
+server.listen(port, ()=> console.log(`Server is running on http://localhost:${port}`));
